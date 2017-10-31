@@ -44,9 +44,9 @@ Thats if the web url are:
 
 Use the command:
 
-    ```python
-    python prntscr_pic_downloader.py https://prnt.sc/aaaaa https://prnt.sc/bbbbb https://prnt.sc/ccccc https://prnt.sc/ddddd
-    ```
+```python
+ python prntscr_pic_downloader.py https://prnt.sc/aaaaa https://prnt.sc/bbbbb https://prnt.sc/ccccc https://prnt.sc/ddddd
+```
 
 ## How to Contribute
 

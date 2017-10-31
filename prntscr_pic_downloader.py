@@ -15,7 +15,7 @@ class PrntscrPicDownloader(object):
     def __get_pic_url_from_html(self, html_code):
         pic_url = None
         pic_url_patterns = re.findall(
-            r"<img class=\"image__pic js-image-pic\" src=\"([a-zA-Z,0-9,:,/,\.]+)\" alt", html_code)
+            r"<img class=\"image__pic js-image-pic\" src=\"([a-zA-Z,0-9,:,/,\.,_]+)\" alt", html_code)
         if pic_url_patterns:
             pic_url = pic_url_patterns[0]
         return pic_url
@@ -29,27 +29,34 @@ class PrntscrPicDownloader(object):
                 pic_webpage_response_html = ''
             pic_urls[prntscr_url] = self.__get_pic_url_from_html(
                 pic_webpage_response.text)
+            print "Processed {prntscr_url} Prntscr Webpage".format(prntscr_url=prntscr_url)
         return pic_urls
 
     def __get_file_name(self, pic_url, prntscr_url):
-        pic_url_paterns = re.findall(r"http://prntscr.com/([a-zA-Z,0-9])")
-        prntscr_url_paterns = re.findall(
-            r"https://image.prntscr.com/image/([a-zA-Z,0-9,\.])")
-        if pic_url_paterns:
+        pic_url_paterns = re.findall(
+            r"[https|http]://image\.prntscr\.com/image/([a-zA-Z,0-9,_]+)", pic_url)
+        prntscr_url_paterns = re.findall(r"[https|http]://prnt\.sc/([a-zA-Z,0-9,_]+)", prntscr_url) + re.findall(
+            r"[https|http]://prntscr\.com/([a-zA-Z,0-9,_]+)", prntscr_url)
+        if prntscr_url_paterns:
+            return prntscr_url_paterns[0] + ".png"
+        elif pic_url_paterns:
             return pic_url_paterns[0] + ".png"
-        elif prntscr_url_paterns:
-            return prntscr_url_paterns[0]
         else:
             return uuid.uuid4().hex
 
     def go(self):
         for prntscr_url, pic_url in self.pic_urls.iteritems():
-            response = requests.get(prntscr_url, stream=True)
-            file_name = self.__get_file_name(pic_url, prntscr_url)
-            if response.status_code == 200:
-                with open(file_name, 'wb') as f:
-                    response.raw.decode_content = True
-                    shutil.copyfileobj(response.raw, f)
+            if pic_url and prntscr_url:
+                print "{pic_url} is the Pic URL for the {prntscr_url} Prntscr Webpage".format(pic_url=pic_url, prntscr_url=prntscr_url)
+                response = requests.get(pic_url, stream=True)
+                file_name = self.__get_file_name(pic_url, prntscr_url)
+                if response.status_code == 200:
+                    with open(file_name, 'wb') as f:
+                        response.raw.decode_content = True
+                        shutil.copyfileobj(response.raw, f)
+                    print "Downloaded {pic_url} from the {prntscr_url} Prntscr Webpage".format(pic_url=pic_url, prntscr_url=prntscr_url)
+                else:
+                    print "Can't download the Pic for the {url}".format(url=prntscr_url)
             else:
                 print "Can't download the Pic for the {url}".format(url=prntscr_url)
 

@@ -37,12 +37,13 @@ With the unique identifies in its input webpage url as the image name. For eg: `
 ## Example
 
 Thats if the web url are:
-- https://prnt.sc/h4dhl1
-- https://prnt.sc/h4dhl2
-- https://prnt.sc/h4dhl3
-- https://prnt.sc/h4dhl4
+- https://prnt.sc/aaaaa
+- https://prnt.sc/bbbbb
+- https://prnt.sc/ccccc
+- https://prnt.sc/ddddd
 
 Use the command:
+
     ```python
     python prntscr_pic_downloader.py https://prnt.sc/aaaaa https://prnt.sc/bbbbb https://prnt.sc/ccccc https://prnt.sc/ddddd
     ```

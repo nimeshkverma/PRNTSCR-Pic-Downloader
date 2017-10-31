@@ -11,7 +11,46 @@ Visual:
 ![alt text](https://image.prntscr.com/image/hfTdoKFmSQWTm0nRaHxvvw.png)
 
 Downloads:
+ - ![alt text](https://image.prntscr.com/image/On_5afQmRDq2cajLQfApIQ.jpg)
 
-![alt text](https://image.prntscr.com/image/On_5afQmRDq2cajLQfApIQ.jpg)
+With the unique identifies in its input webpage url as the image name. For eg: `h4dhl1.png` in case of `https://prnt.sc/h4dhl1`
 
-With the unique identifies `h4dhl1` in its input webpage url as the image name.
+## Prerequisites
+- Python 2.7
+- Recommended: Any Python Virtual Environment Utility
+
+## Usage
+
+1. Clone the repository move into any of the directory `PRNTSCR-Pic-Downloader` by:
+
+    `cd PRNTSCR-Pic-Downloader`
+    
+2. If using a virual environment, activate it and run the following command:
+
+    `pip install -r requirements.txt`
+
+3. Run the following command by inserting the correct valus
+    ```python
+    python prntscr_pic_downloader.py web_url_1 web_url_2 web_url_3 ....
+    ```
+
+## Example
+
+Thats if the web url are:
+- https://prnt.sc/h4dhl1
+- https://prnt.sc/h4dhl2
+- https://prnt.sc/h4dhl3
+- https://prnt.sc/h4dhl4
+
+Use the command:
+    ```python
+    python prntscr_pic_downloader.py https://prnt.sc/aaaaa https://prnt.sc/bbbbb https://prnt.sc/ccccc https://prnt.sc/ddddd
+    ```
+
+## How to Contribute
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull RequestThe scripts in this
